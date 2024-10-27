@@ -1,12 +1,22 @@
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath "org.flywaydb:flyway-mysql:10.20.1"
+	}
+}
+
 plugins {
+	id 'java'
 	id 'org.springframework.boot' version '2.7.18'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-	id 'java'
+	id "org.flywaydb.flyway" version "10.20.1"
 }
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+sourceCompatibility = '17'
 
 configurations {
 	compileOnly {
@@ -36,4 +46,10 @@ dependencies {
 
 test {
 	useJUnitPlatform()
+}
+
+flyway {
+	url = 'jdbc:mysql://localhost:3307/itsdb'
+	user = 'itsuser'
+	password = 'itspass'
 }
