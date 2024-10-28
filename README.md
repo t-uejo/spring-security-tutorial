@@ -2,4 +2,27 @@
 ## 概要
 - 本リポジトリでは、認証・認可など最低限のセキュリティ要件を実装したWebアプリケーションを開発する。
 - 開発にあたってはJavaの`Spring Security`を活用する。
-- 本アプリケーションを開発するにあたって参考としたドキュメントは、NTTデータが提供する[TERASOLUNA Server Framework for Java (5.x) Development Guideline 5.9.0.RELEASE documentation](https://terasolunaorg.github.io/guideline/current/ja/index.html)の「9.セキュリティ対策」である。
+- Spring Securityを実装する上で参考にしたドキュメントは、NTTデータが提供する[TERASOLUNA Server Framework for Java (5.x) Development Guideline 5.9.0.RELEASE documentation](https://terasolunaorg.github.io/guideline/current/ja/index.html)の「9.セキュリティ対策」である。
+
+## セキュリティ要件
+- 本アプリケーションで実施するセキュリティ対策については、IPAが提供する「[安全なウェブサイトの作り方](https://www.ipa.go.jp/security/vuln/websecurity/about.html)」を参考としている。
+- ここでは以下の脆弱性対策を実施する。
+- また、根本的対策と保険的対策があり、根本的対策のみを実施することとする。
+
+### 1. セッション管理の不備
+- [ ] セッションIDを推測困難なものにする
+- [ ] セッション ID を URL パラメータに格納しない
+- [ ] HTTPS 通信で利用する Cookie には secure 属性を加える
+- [ ] ログイン成功ログイン成功後に、新しくセッションを開始する
+- [ ] ログイン成功後に、既存のセッション ID とは別に秘密情報を発行し、ページの遷移
+  ごとにその値を確認する
+
+### 2. CSRF
+- [ ] 処理を実行するページを POST メソッドでアクセスするようにし、その「hidden パラメータ」に秘密情報が挿入されるよう、前のページを自動生成して、実行ページで
+  はその値が正しい場合のみ処理を実行する。
+- [ ] 処理を実行する直前のページで再度パスワードの入力を求め、実行ページでは、再度入力されたパスワードが正しい場合のみ処理を実行する。
+- [ ] Referer が正しいリンク元かを確認し、正しい場合のみ処理を実行する。
+
+### 3. アクセス制御や認可制御の欠落
+- [ ] アクセス制御機能による防御措置が必要とされるウェブサイトには、パスワード等の秘密情報の入力を必要とする認証機能を設ける。
+- [ ] 認証機能に加えて認可制御の処理を実装し、ログイン中の利用者が他人になりすましてアクセスできないようにする。
