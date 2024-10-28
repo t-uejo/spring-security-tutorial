@@ -23,7 +23,6 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(
             HttpSecurity http
     ) throws Exception {
-
         http
                 .formLogin(login -> login.loginPage("/login"))
                 .authorizeHttpRequests(authorize -> authorize
