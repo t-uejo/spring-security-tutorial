@@ -24,7 +24,8 @@ public class SecurityConfig {
             HttpSecurity http
     ) throws Exception {
         http
-                .formLogin(login -> login.loginPage("/login"))
+                .formLogin(login -> login
+                        .loginPage("/login"))
                 .authorizeHttpRequests(authorize -> authorize
                                 .requestMatchers(new AntPathRequestMatcher("/login/**")).permitAll()
                                 .anyRequest().authenticated()
