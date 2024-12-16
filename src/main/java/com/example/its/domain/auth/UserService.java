@@ -15,4 +15,9 @@ public class UserService {
     public List<UserEntity> findAll(){
         return userRepository.findAll();
     }
+
+    @Transactional
+    public void create(UserEntity entity) {
+        userRepository.create(entity);
+    }
 }
