@@ -1,6 +1,7 @@
 package com.example.its.domain.auth;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,6 +12,8 @@ import java.util.List;
 public class UserService {
     private final UserRepository userRepository;
 
+    private final PasswordEncoder passwordEncoder;
+
     @Transactional(readOnly = true)
     public List<UserEntity> findAll(){
         return userRepository.findAll();
@@ -18,6 +21,7 @@ public class UserService {
 
     @Transactional
     public void create(UserEntity entity) {
-        userRepository.create(entity.username(), entity.password());
+        var encodedPassword = passwordEncoder.encode(entity.password());
+        userRepository.create(entity.username(), encodedPassword);
     }
 }

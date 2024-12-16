@@ -45,11 +45,4 @@ public class SecurityConfig {
         provider.setUserDetailsService(userDetailsService);
         return new ProviderManager(provider);
     }
-
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-        //TODO:仮実装
-        //return new BCryptPasswordEncoder();
-        return NoOpPasswordEncoder.getInstance();
-    }
 }
