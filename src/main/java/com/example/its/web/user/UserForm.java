@@ -12,6 +12,7 @@ public record UserForm(
         String username,
 
         @NotBlank
+        @Size(min = 12, max = 128)
         String password
 ) {
     public UserEntity toEntity() {
