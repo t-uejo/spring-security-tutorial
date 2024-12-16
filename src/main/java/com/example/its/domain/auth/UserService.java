@@ -18,6 +18,6 @@ public class UserService {
 
     @Transactional
     public void create(UserEntity entity) {
-        userRepository.create(entity);
+        userRepository.create(entity.username(), entity.password());
     }
 }

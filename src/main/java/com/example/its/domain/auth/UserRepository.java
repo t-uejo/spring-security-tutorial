@@ -15,6 +15,6 @@ public interface UserRepository {
     @Select("SELECT * FROM users;")
     List<UserEntity> findAll();
 
-    @Insert("INSERT INTO users (username, password) VALUES (#{entity.username}, #{entity.password});")
-    void create(@Param("entity") UserEntity entity);
+    @Insert("INSERT INTO users (username, password) VALUES (#{username}, #{password});")
+    void create(@Param("username") String username, @Param("password") String password);
 }
