@@ -27,8 +27,8 @@ public class SecurityConfig {
                 .formLogin(login -> login
                         .loginPage("/login"))
                 .authorizeHttpRequests(authorize -> authorize
-                                .requestMatchers(new AntPathRequestMatcher("/login/**")).permitAll()
-                                .anyRequest().authenticated()
+                        .requestMatchers(new AntPathRequestMatcher("/login/**")).permitAll()
+                        .anyRequest().authenticated()
                 )
                 ;
 

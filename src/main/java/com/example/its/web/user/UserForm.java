@@ -1,12 +1,14 @@
 package com.example.its.web.user;
 
 import com.example.its.domain.auth.UserEntity;
+import com.example.its.web.validation.UniqueUsername;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 public record UserForm(
         @NotBlank
+        @UniqueUsername
         String username,
 
         @NotBlank
