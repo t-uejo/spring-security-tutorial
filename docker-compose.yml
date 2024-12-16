@@ -1,18 +1,24 @@
 services:
   db:
     image: mysql:8.1
+    container_name: udemy_security_mysql
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
       MYSQL_DATABASE: itsdb
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_ROOT_PASSWORD: itsdb
       MYSQL_USER: itsuser
       MYSQL_PASSWORD: itspass
     ports:
       - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
 
   adminer:
     image: adminer
     restart: always
     ports:
       - "8082:8080"
+
+volumes:
+  mysql_data:
