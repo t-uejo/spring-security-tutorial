@@ -14,7 +14,7 @@ public class CustomUserDetails extends User {
     public CustomUserDetails(
             String username,
             String password,
-            Collection<? extends GrantedAuthority> authorities) {
+            List<GrantedAuthority> authorities) {
         super(username, password, authorities);
     }
 }
