@@ -15,6 +15,7 @@ public interface UserRepository {
     @Select("SELECT * FROM users;")
     List<UserEntity> findAll();
 
-    @Insert("INSERT INTO users (username, password) VALUES (#{username}, #{password});")
+    //TODO:権限部分仮実装のため修正する
+    @Insert("INSERT INTO users (username, password, authority) VALUES (#{username}, #{password}, 'USER');")
     void create(@Param("username") String username, @Param("password") String password);
 }
