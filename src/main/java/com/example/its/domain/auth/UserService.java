@@ -22,6 +22,6 @@ public class UserService {
     @Transactional
     public void create(UserEntity entity) {
         var encodedPassword = passwordEncoder.encode(entity.password());
-        userRepository.create(entity.username(), encodedPassword);
+        userRepository.create(entity.username(), encodedPassword, entity.authority().name());
     }
 }

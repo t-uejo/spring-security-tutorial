@@ -9,13 +9,16 @@ import java.util.Optional;
 
 @Mapper
 public interface UserRepository {
-    @Select("SELECT username, password FROM users WHERE username = #{username}")
+    @Select("SELECT * FROM users WHERE username = #{username}")
     Optional<UserEntity> findByUsername(@Param("username") String username);
 
     @Select("SELECT * FROM users;")
     List<UserEntity> findAll();
 
-    //TODO:権限部分仮実装のため修正する
-    @Insert("INSERT INTO users (username, password, authority) VALUES (#{username}, #{password}, 'USER');")
-    void create(@Param("username") String username, @Param("password") String password);
+    @Insert("INSERT INTO users (username, password, authority) VALUES (#{username}, #{password}, #{authority});")
+    void create(
+            @Param("username") String username,
+            @Param("password") String password,
+            String authority
+    );
 }
