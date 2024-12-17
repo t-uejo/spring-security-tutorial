@@ -11,12 +11,14 @@
 <table class="table">
   <thead>
     <tr>
-      <th>username</th>
+      <th>ユーザ名</th>
+      <th>権限</th>
     </tr>
   </thead>
   <tbody>
-    <tr th:each="user : ${userList}">
-      <th th:text="${user.username}"></th>
+    <tr th:each="user : ${userList}" th:object="${user}">
+      <td th:text="*{username}"></td>
+      <td th:text="*{authority}"></td>
     </tr>
   </tbody>
 </table>
